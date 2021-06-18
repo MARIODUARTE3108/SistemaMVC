@@ -1,0 +1,91 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="icon" rel="icon" />
+    
+    <link rel="icon" href="~/css/img/icon.png" type="image/x-icon"/>
+    
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+    <div class="container mt-4">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <img src="https://www.cotiinformatica.com.br/imagens/logo-coti-informatica.png" class="img-fluid" />
+                <br />
+                <br />
+
+                <div>
+                    <strong>Usuário autenticado:</strong>
+                    <div> @User.Identity.Name </div>
+                </div>
+
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/Home/Index" class="btn btn-outline-primary">
+                        Página Inicial
+                    </a>
+                </div>
+
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/Produto/Cadastro" class="btn btn-outline-primary">
+                        Cadastrar
+                    </a>
+                </div>
+
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/Produto/Consulta" class="btn btn-outline-primary">
+                        Consultar
+                    </a>
+                </div>
+
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/Produto/Relatorio" class="btn btn-outline-primary">
+                        Relatórios de Produtos
+                    </a>
+                </div>
+
+                <div class="d-grid gap-2 mt-2">
+                    <a href="/Account/Logout" class="btn btn-outline-danger" onclick=" return confirm('Deseja realmente sair do sistema?');">
+                        Sair do Sistema
+                    </a>
+                </div>
+            </div>           
+
+            <div class="col-md-9">
+                @RenderBody()
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/js/bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script>$(document).ready(function () {
+            $('#tabela_dados').DataTable({
+                "pageLength": 5,
+                "lengthMenu": [5, 10, 20, 50, 100],
+                "oLanguage": {
+                    "sUrl": "https://cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json"
+                }
+            });
+        });
+
+
+    </script>
+    @RenderSection("scripts", required: false);
+</body>
+</html>
